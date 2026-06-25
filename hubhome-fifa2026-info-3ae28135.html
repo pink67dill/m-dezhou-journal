@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>HubHome · 世界杯指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f3f9fc;
+      color: #1e2b34;
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 12px 30px rgba(0, 60, 70, 0.08);
+      padding: 2rem 1.5rem 3rem;
+      transition: all 0.2s ease;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #115c6e;
+      border-left: 6px solid #2fa7b4;
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: #3c6a7a;
+      margin-bottom: 2.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #d6eaf0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+
+    @media (min-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .page {
+        padding: 2.8rem 2.5rem 4rem;
+      }
+    }
+
+    .card {
+      background: #f4fbfd;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      transition: box-shadow 0.15s ease;
+      border: 1px solid rgba(47, 167, 180, 0.18);
+      box-shadow: 0 4px 8px rgba(0, 60, 70, 0.03);
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(58, 130, 140, 0.08);
+      border-color: #2fa7b4;
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #0a4957;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 span {
+      background: #2fa7b4;
+      color: white;
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: #2b4c58;
+      font-size: 0.97rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: #1b3d48;
+    }
+
+    .card li::before {
+      content: "•";
+      color: #2fa7b4;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .highlight-box {
+      background: linear-gradient(145deg, #e1f2f5, #f0f9fc);
+      border-radius: 2rem;
+      padding: 1.8rem 1.8rem;
+      margin: 2rem 0 1.2rem;
+      border-left: 6px solid #2fa7b4;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .link-inline {
+      color: #16697a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #b3dde5;
+      transition: border-color 0.15s;
+    }
+
+    .link-inline:hover {
+      border-bottom-color: #16697a;
+    }
+
+    .faq-list {
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #dbeef3;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item strong {
+      display: block;
+      color: #0b4b5a;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #2b5a66;
+      font-size: 0.94rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #2fa7b4;
+      color: #115c6e;
+      padding: 0.5rem 1.4rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-outline:hover {
+      background: #2fa7b4;
+      color: white;
+    }
+
+    .footnote {
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #dbeef3;
+      font-size: 0.85rem;
+      color: #46727e;
+      text-align: center;
+    }
+
+    .footnote a {
+      color: #16697a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2fa7b4;
+      color: white;
+      padding: 0.15rem 0.8rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>⚽ 世界杯 · 稳定入口说明</h1>
+    <div class="hero-tagline">
+      HubHome 为关注赛事的用户整理了一条清晰通路——从页面到资讯，不绕路、不浮夸。
+    </div>
+
+    <!-- 摘要卡片区 -->
+    <div class="grid-2">
+      <div class="card">
+        <h3><span>①</span> 页面摘要</h3>
+        <p>本站作为 <a href="https://hubhome-fifa2026.com" class="link-inline">世界杯</a> 相关内容的聚合说明页，帮助你在赛前阶段快速理解可用信息。没有弹窗干扰，没有夸大导流，只有经过筛选的入口与简要指引。</p>
+        <p style="margin-top:0.8rem;">你可以把它当作一张索引卡——知道哪里能找到可靠内容，比漫无目的搜索更省时间。</p>
+      </div>
+      <div class="card">
+        <h3><span>②</span> 亮点速览</h3>
+        <ul>
+          <li>主题页面围绕核心赛事整理，减少信息噪音</li>
+          <li>结构清晰，移动端阅读友好</li>
+          <li>链接直接指向 <strong>hubhome-fifa2026.com</strong> 相关内容</li>
+          <li>无隐藏跳转、无强制关注</li>
+          <li>页面持续更新，保持与赛程同步</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 使用建议与场景 -->
+    <div class="highlight-box">
+      <p style="font-weight:600; font-size:1.1rem; color:#0b4b5a;">📌 使用建议</p>
+      <p>如果你正在寻找一个关于 <a href="https://hubhome-fifa2026.com" class="link-inline">世界杯</a> 的稳定信息参照点，可以从这个页面开始。推荐在以下场景使用：</p>
+      <ul style="list-style:none; padding-left:0.2rem; margin:0.6rem 0 0.2rem;">
+        <li style="padding:0.25rem 0;">▸ 赛前快速浏览赛事相关页面结构</li>
+        <li style="padding:0.25rem 0;">▸ 需要将链接分享给朋友或群组时</li>
+        <li style="padding:0.25rem 0;">▸ 收藏至浏览器书签，作为赛事期间的一个固定入口</li>
+      </ul>
+      <p style="margin-top:0.8rem;">页面本身不收集信息，也不要求注册。同时建议搭配官方或主流媒体源使用，以获得更完整的直播与数据。</p>
+    </div>
+
+    <!-- 可信说明 + 小提示 -->
+    <div style="display:flex; flex-wrap:wrap; gap:1.2rem; margin:0.8rem 0 1.6rem;">
+      <div style="flex:1; min-width:180px; background:#f7fcfe; border-radius:1.5rem; padding:1.2rem 1.4rem;">
+        <p style="font-weight:600; margin-bottom:0.5rem; color:#0a4957;">✅ 可信但克制</p>
+        <p style="font-size:0.93rem; color:#2b5a66;">本站不提供未经核实的赛程预测或投注信息。所有指向 <a href="https://hubhome-fifa2026.com" class="link-inline">世界杯</a> 的链接均经过可用性检查，但页面内容可能随时间调整，建议以实际访问为准。</p>
+      </div>
+      <div style="flex:1; min-width:160px; background:#eaf6f9; border-radius:1.5rem; padding:1.2rem 1.4rem;">
+        <p style="font-weight:600; margin-bottom:0.5rem; color:#0a4957;">💡 小提示</p>
+        <p style="font-size:0.93rem; color:#2b5a66;">使用自带浏览器“添加到主屏幕”功能，可将此入口保存为快捷方式。<br>（体验类似轻应用，且不占用过多资源）</p>
+        <a href="https://hubhome-fifa2026.com" class="btn-outline" style="margin-top:0.6rem;">世界杯</a>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要（非完整列表） -->
+    <div class="faq-list">
+      <p style="font-weight:600; font-size:1.05rem; color:#0a4957; margin-bottom:0.4rem;">❓ 常见问题摘要</p>
+      <div class="faq-item">
+        <strong>这个页面是官网吗？</strong>
+        <p>不是。这是一个介绍性的说明页，帮助用户了解与 <a href="https://hubhome-fifa2026.com" class="link-inline">世界杯</a> 相关的内容入口。页面上所有链接均指向 hubhome-fifa2026.com 域名下的资源。</p>
+      </div>
+      <div class="faq-item">
+        <strong>页面会频繁更新吗？</strong>
+        <p>随着赛事进程，页面会适当补充或修正说明部分。核心链接结构保持稳定，适合长期收藏。</p>
+      </div>
+      <div class="faq-item" style="border-bottom:none;">
+        <strong>移动端显示是否完整？</strong>
+        <p>完全适配，卡片和按钮在手机、平板和桌面端均能正常浏览。字体大小和间距已针对小屏幕优化。</p>
+      </div>
+    </div>
+
+    <!-- 底部链接（非强调） -->
+    <div class="footnote">
+      <span>页面内容仅供说明参考 · </span>
+      <a href="https://hubhome-fifa2026.com" class="link-inline">世界杯</a> 
+      <span style="margin:0 0.3rem;">·</span> 
+      <span>保持通路清晰</span>
+      <br style="display:block; margin-top:0.5rem;">
+      <span style="opacity:0.7;">— 无诱导 · 无注册 · 仅作指引 —</span>
+    </div>
+  </div>
+</body>
+</html>
